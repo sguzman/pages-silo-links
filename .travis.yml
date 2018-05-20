@@ -22,7 +22,7 @@ install:
   - cd books/
 script:
   - touch stats.log
-  - tail -f stats.log &
+  - tail -f stats.log | gawk 'NR % 500 == 0' &
   - cat ../../links/links.brotli | brotli -d | parallel -j8 --joblog stats.log curl -sq http://23.95.221.108/'{}' '|' brotli '>' '{}'.html.brotli
 after_success:
   - git add *.html.brotli
