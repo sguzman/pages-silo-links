@@ -21,10 +21,7 @@ install:
   - mkdir -p books/
   - cd books/
 script:
-  - while true; do echo 'heartbeat'; sleep 5m; done &
-  - pid=$!
-  - cat ../../links/links.brotli | brotli -d | parallel -j8 --joblog stats.log 'curl -sq http://23.95.221.108/{}/ | brotli > {}.html.brotli'
-  - kill -9 $pid
+  - travis_wait 50 (cat ../../links/links.brotli | brotli -d | parallel -j8 --joblog stats.log 'curl -sq http://23.95.221.108/{}/ | brotli > {}.html.brotli')
 after_success:
   - git add *.html.brotli
   - git commit -m 'Added book pages' | gawk 'NR % 5 == 0'
