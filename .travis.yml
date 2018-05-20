@@ -21,9 +21,9 @@ install:
   - mkdir -p books/
   - cd books/
 script:
-  - cat ../../links/links.brotli | brotli -d | parallel -j8 --joblog log curl -sq http://23.95.221.108/'{}' '|' brotli '>' '{}'.txt.brotli
+  - cat ../../links/links.brotli | brotli -d | parallel -j8 --joblog log curl -sq http://23.95.221.108/'{}' '|' brotli '>' '{}'.html.brotli
 after_success:
-  - git add links.brotli
+  - git add *.html.brotli
   - git commit -m 'Added book pages'
   - echo $GITHUB_AUTH > ~/.git-credentials
   - git config --global credential.helper store
