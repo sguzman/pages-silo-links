@@ -21,7 +21,7 @@ install:
   - mkdir -p books/
   - cd books/
 script:
-  - cat ../../links/links.brotli | brotli -d | parallel -j8 --joblog /dev/stdout 'curl -sq http://23.95.221.108/{}/ | brotli > {}.html.brotli' | gawk 'NR % 500 == 0'
+  - cat ../../links/links.brotli | brotli -d | parallel -j8 --joblog /dev/stdout 'curl -sq http://23.95.221.108/{}/ | brotli > {}.html.brotli'
 after_success:
   - git add *.html.brotli
   - git commit -m 'Added book pages' | gawk 'NR % 5 == 0'
