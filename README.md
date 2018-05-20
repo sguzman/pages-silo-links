@@ -1,1 +1,1 @@
-# pages-silo-links
+![Travis](https://travis-ci.org/sguzman/pages-silo-links.svg?branch=master)
