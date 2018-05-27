@@ -13,7 +13,7 @@ before_install:
   - sudo cp ./brotli /bin/brotli
   - sudo chmod 777 /bin/brotli
   - cd ..
-  - pip install -r requirements.txt
+  - sudo pip install -r requirements.txt
 install:
   - git config --global user.name "Salvador Guzman"
   - git config --global user.email "guzmansalv@gmail.com"
